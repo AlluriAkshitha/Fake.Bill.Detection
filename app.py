@@ -1,17 +1,18 @@
-#!/usr/bin/env python
-# coding: utf-8
+import joblib
+import gdown  # Install via `pip install gdown`
 
-# In[ ]:
+# Google Drive direct download link
+url = "https://drive.google.com/uc?export=download&id=1mahpem_ycVUVG2FnJXetlJc10pUNJP7O"
 
+# Model filename
+model_filename = "fake_bill_model.pkl"
 
-from flask import Flask, render_template, request
-import numpy as np
-import joblib  # If using a trained model
+# Download the model
+gdown.download(url, model_filename, quiet=False)
 
-app = Flask(__name__)
-
-# Load the ML model (Ensure you have `model.pkl` in your project)
-model = joblib.load("fake_bill_model.pkl")  # Replace with your trained model file
+# Load the model
+model = joblib.load(model_filename)
+print("Model loaded successfully!")
 
 @app.route("/")
 def home():
@@ -42,4 +43,3 @@ def predict():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
