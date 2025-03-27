@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Bill Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Enter Bill Measurements</h2>
+        <form action="/predict" method="post">
+            <input type="text" name="diagonal" placeholder="Diagonal Measurement" required><br>
+            <input type="text" name="length" placeholder="Length Measurement" required><br>
+            <input type="text" name="height_left" placeholder="Height Left" required><br>
+            <input type="text" name="height_right" placeholder="Height Right" required><br>
+            <input type="text" name="margin_up" placeholder="Margin Up" required><br>
+            <input type="text" name="margin_low" placeholder="Margin Low" required><br> <!-- Added this field -->
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+</body>
+</html>
