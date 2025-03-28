@@ -1,17 +1,13 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 from flask import Flask, render_template, request
 import numpy as np
-import joblib  # If using a trained model
+import joblib
+import gzip
+
 app = Flask(__name__)
 
-
-# Load the ML model (Ensure you have model.pkl in your project)
-model = joblib.load("fake_bill_model2.pkl")  # Replace with your trained model file
+# Load the compressed ML model
+with gzip.open("fake_bill_model.pkl.gz", "rb") as f:
+    model = joblib.load(f)
 
 @app.route("/")
 def home():
@@ -41,5 +37,4 @@ def predict():
         return f"Error: {e}", 400  # Return error message with a bad request response
 
 if __name__ == "__main__":
-
     app.run(debug=True)
